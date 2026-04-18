@@ -1,0 +1,41 @@
+# need to fill in with relevant values (in m)
+
+imu:
+  x: 0.0
+  y: 0.0
+  z: 0.1
+  roll: 0.0
+  pitch: 0.0
+  yaw: 0.0
+
+lidar:
+  x: 0.0
+  y: 0.0
+  z: 0.1
+  roll: 0.0
+  pitch: 0.0
+  yaw: 0.0
+
+zed_left:
+  x: 0.0
+  y: 0.0
+  z: 0.1
+  roll: 0.0
+  pitch: 0.0
+  yaw: -0.7853981634
+
+zed_right:
+  x: 0.0
+  y: 0.0
+  z: 0.1
+  roll: 0.0
+  pitch: 0.0
+  yaw: +0.7853981634
+
+gps:
+  x: 0.0
+  y: 0.0
+  z: 0.1
+  roll: 0.0
+  pitch: 0.0
+  yaw: 0

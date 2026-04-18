@@ -1,0 +1,12 @@
+[workspace]
+authors = ["Lucas Libshutz <lsl94@cornell.edu>"]
+channels = ["conda-forge","robostack-humble"]
+name = "igvc_transforms"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+ros-humble-xacro = "*"
+ros-humble-nav2-core = "*"

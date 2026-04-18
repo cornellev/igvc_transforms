@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_car">
+
+  <!-- Load sensor config -->
+  <xacro:property name="cfg" value="${xacro.load_yaml('$(find my_car_description)/config/sensors.yaml')}"/>
+
+  <!-- Include macros -->
+  <xacro:include filename="$(find my_car_description)/urdf/macros/imu.xacro"/>
+  <xacro:include filename="$(find my_car_description)/urdf/macros/lidar.xacro"/>
+  <xacro:include filename="$(find my_car_description)/urdf/macros/zed_camera.xacro"/>
+  <xacro:include filename="$(find my_car_description)/urdf/macros/gps.xacro"/>
+
+  <!-- Root link -->
+  <link name="base_footprint"/>
+  <joint name="base_footprint_to_base_link" type="fixed">
+    <parent link="base_footprint"/>
+    <child  link="base_link"/>
+    <origin xyz="0 0 0.3" rpy="0 0 0"/>  <!-- ground to base_link height -->
+  </joint>
+  <link name="base_link"/>
+
+  <!-- Instantiate sensors, pulling values from YAML -->
+  <xacro:imu
+    name="imu" parent="base_link"
+    x="${cfg['imu']['x']}"     y="${cfg['imu']['y']}"     z="${cfg['imu']['z']}"
+    roll="${cfg['imu']['roll']}" pitch="${cfg['imu']['pitch']}" yaw="${cfg['imu']['yaw']}"/>
+
+  <xacro:lidar
+    name="lidar" parent="base_link"
+    x="${cfg['lidar']['x']}"     y="${cfg['lidar']['y']}"     z="${cfg['lidar']['z']}"
+    roll="${cfg['lidar']['roll']}" pitch="${cfg['lidar']['pitch']}" yaw="${cfg['lidar']['yaw']}"/>
+
+  <xacro:zed_camera
+    name="zed_left" parent="base_link"
+    x="${cfg['zed_left']['x']}"     y="${cfg['zed_left']['y']}"     z="${cfg['zed_left']['z']}"
+    roll="${cfg['zed_left']['roll']}" pitch="${cfg['zed_left']['pitch']}" yaw="${cfg['zed_left']['yaw']}"/>
+
+  <xacro:zed_camera
+    name="zed_right" parent="base_link"
+    x="${cfg['zed_right']['x']}"     y="${cfg['zed_right']['y']}"     z="${cfg['zed_right']['z']}"
+    roll="${cfg['zed_right']['roll']}" pitch="${cfg['zed_right']['pitch']}" yaw="${cfg['zed_right']['yaw']}"/>
+
+  <xacro:gps
+    name="gps" parent="base_link"
+    x="${cfg['gps']['x']}"     y="${cfg['gps']['y']}"     z="${cfg['gps']['z']}"
+    roll="${cfg['gps']['roll']}" pitch="${cfg['gps']['pitch']}" yaw="${cfg['gps']['yaw']}"/>
+
+</robot>
