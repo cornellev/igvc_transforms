@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_car">
 
+  <xacro:arg name="sensor_cfg" default=""/>
   <!-- Load sensor config -->
-  <xacro:property name="cfg" value="${xacro.load_yaml('$(find my_car_description)/config/sensors.yaml')}"/>
-
+  <xacro:property name="cfg" value="${xacro.load_yaml('$(arg sensor_cfg)')}"/>
   <!-- Include macros -->
-  <xacro:include filename="$(find my_car_description)/urdf/macros/imu.xacro"/>
-  <xacro:include filename="$(find my_car_description)/urdf/macros/lidar.xacro"/>
-  <xacro:include filename="$(find my_car_description)/urdf/macros/zed_camera.xacro"/>
-  <xacro:include filename="$(find my_car_description)/urdf/macros/gps.xacro"/>
+  <xacro:include filename="macros/imu.xacro"/>
+  <xacro:include filename="macros/lidar.xacro"/>
+  <xacro:include filename="macros/zed_camera.xacro"/>
+  <xacro:include filename="macros/gps.xacro"/>
 
   <!-- Root link -->
   <link name="base_footprint"/>

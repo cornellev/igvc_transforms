@@ -2,11 +2,27 @@
 authors = ["Lucas Libshutz <lsl94@cornell.edu>"]
 channels = ["conda-forge","robostack-humble"]
 name = "igvc_transforms"
-platforms = ["osx-arm64"]
+platforms = ["osx-arm64","linux-aarch64","linux-64"]
 version = "0.1.0"
 
-[tasks]
 
 [dependencies]
+ros-humble-robot-state-publisher = "*"
 ros-humble-xacro = "*"
-ros-humble-nav2-core = "*"
+ros-humble-rviz2 = "*"
+ros-humble-tf2-ros = "*"
+ros-humble-tf2-tools = "*"
+ros-humble-rclpy = "*"
+ros-humble-ros-base = ">=0.10.0,<0.11"
+ros-humble-launch-ros = "*"
+
+[tasks]
+check-urdf = "xacro urdf/robot_urdf.xacro"
+
+launch = "ros2 launch launch/robot_launch.py"
+
+view-frames = "ros2 run tf2_tools view_frames"
+
+tf-echo = "ros2 run tf2_ros tf2_echo base_link lidar_frame"
+
+
